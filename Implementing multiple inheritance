@@ -1,0 +1,72 @@
+class Person:
+    def __new__(cls, *args, **kwargs):
+        print("New person has been born")
+        return super().__new__(cls)
+
+    def __init__(self, name, age):
+        self.__name = name
+        self.__age = age
+
+    # Getter and setter for name
+    def get_name(self):
+        return self.__name
+
+    def set_name(self, name):
+        self.__name = name
+
+    # Getter and setter for age
+    def get_age(self):
+        return self.__age
+
+    def set_age(self, age):
+        self.__age = age
+
+    def say_hello(self):
+        print(f"Hello, my name is {self.get_name()}")
+
+
+class Employee(Person):
+    def __init__(self, name, age, position):
+        super().__init__(name, age)
+        self._position = position  # Protected field
+
+    def introduce(self):
+        self.say_hello()
+        print(f"My position is {self._position}")
+
+
+class Student(Person):
+    def __init__(self, name, age):
+        super().__init__(name, age)
+        self._position = "Student"  # Default position
+
+    def introduce(self):
+        self.say_hello()
+        print(f"My position is {self._position}")
+
+
+class WorkingStudent(Employee, Student):
+    def __init__(self, name, age, position):
+        # Initialize both Employee and Student
+        Employee.__init__(self, name, age, position)
+        Student.__init__(self, name, age)
+
+    def __call__(self):
+        self.say_hello()
+        self.introduce()
+
+
+# Creating instances and calling methods
+
+person = Person("John", 30)
+person.say_hello()
+
+employee = Employee("Alice", 25, "Software Engineer")
+employee.introduce()
+
+student = Student("Bob", 20)
+student.introduce()
+
+working_student = WorkingStudent("Charlie", 22, "Part-time Developer")
+working_student()
+

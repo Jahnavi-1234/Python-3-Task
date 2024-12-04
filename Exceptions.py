@@ -26,14 +26,16 @@ class Cat:
 def main():
     my_cat = Cat()
     try:
+        my_cat.say_meow()
         my_cat.sharpen_claws()
+        my_cat.drink_water_from_aquarium()
     
-    except SofaIsDamaged as i:
-        print(f"Caught exception:", i)
-    except FishIsUnderAttack as i:
-        print(f"Caught exception:", i)
-    except CatIsHungry as e:
-        print(f"Caught exception:", i)
+    except SofaIsDamaged as e1:
+        print(f"Caught exception:", e1)
+    except FishIsUnderAttack as e2:
+        print(f"Caught exception:", e2)
+    except CatIsHungry as e3:
+        print(f"Caught exception:", e3)
     finally:
         my_cat.sleep()  
 
