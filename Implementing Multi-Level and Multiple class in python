@@ -1,4 +1,5 @@
 # Class Person with private fields, getter/setter methods, and a say_hello method
+# Color added
 class Person:
     def __init__(self, name, age):
         print("New person has been born")
